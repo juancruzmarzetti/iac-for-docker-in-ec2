@@ -1,7 +1,6 @@
 resource "aws_security_group" "docker" {
   name_prefix = "docker-${var.name}"
-  vpc_id      = "vpc-076a543b8f9b05b42"
-
+  vpc_id      = var.vpcid
   ingress {
     protocol    = "tcp"
     from_port   = 22

@@ -10,8 +10,8 @@ data "aws_ami" "amazon-linux-2" {
 resource "aws_instance" "docker" {
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "t2.small"
-  subnet_id                   = "subnet-080aa089164521ea5"
-  key_name                    = "damian2"
+  subnet_id                   = var.subnetid
+  key_name                    = var.keyname
   vpc_security_group_ids      = [aws_security_group.docker.id]
   associate_public_ip_address = true
 
@@ -35,7 +35,7 @@ resource "aws_instance" "docker" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("./damian2.pem")
+      private_key = file("./${var.keyname}.pem")
       host        = self.public_ip
     }
   }
