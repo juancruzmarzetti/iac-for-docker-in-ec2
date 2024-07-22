@@ -3,6 +3,7 @@ stages:
   - destroy
 
 variables:
+  TF_API_TOKEN: $TF_API_TOKEN
   TF_STATE_NAME: default
   TF_IMAGE: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/releases/1.4:v1.0.0"
   SECURE_FILES_DOWNLOAD_PATH: "./"
