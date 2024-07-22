@@ -1,0 +1,39 @@
+stages:
+  - deploy
+  - destroy
+
+variables:
+  TF_STATE_NAME: default
+  TF_IMAGE: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/releases/1.4:v1.0.0"
+  SECURE_FILES_DOWNLOAD_PATH: "./"
+
+deploy:
+  stage: deploy
+  image: ${TF_IMAGE}
+  before_script:
+    - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | sh
+  script:
+    - gitlab-terraform init
+    - gitlab-terraform validate
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
+    - gitlab-terraform apply
+  resource_group: ${TF_STATE_NAME}
+  cache:
+    untracked: true
+    paths:
+      - /
+  only:
+    - main
+
+destroy:
+  stage: destroy
+  image: ${TF_IMAGE}
+  when: manual
+  before_script:
+    - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | sh
+  script:
+    - gitlab-terraform destroy
+  resource_group: ${TF_STATE_NAME}
+  only:
+    - main
