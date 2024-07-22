@@ -9,7 +9,7 @@ data "aws_ami" "amazon-linux-2" {
 
 resource "aws_instance" "docker" {
   ami                         = data.aws_ami.amazon-linux-2.id
-  instance_type               = "t2.small"
+  instance_type               = "t2.micro"
   subnet_id                   = var.subnetid
   key_name                    = var.keyname
   vpc_security_group_ids      = [aws_security_group.docker.id]
