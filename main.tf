@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "http" {
-    address        = "https://gitlab.com/api/v4/projects/59573294/terraform/state/default"
-    lock_address   = "https://gitlab.com/api/v4/projects/59573294/terraform/state/default/lock"
-    unlock_address = "https://gitlab.com/api/v4/projects/59573294/terraform/state/default/lock"
+    address        = "https://gitlab.com/api/v4/projects/60206449/terraform/state/default"
+    lock_address   = "https://gitlab.com/api/v4/projects/60206449/terraform/state/default/lock"
+    unlock_address = "https://gitlab.com/api/v4/projects/60206449/terraform/state/default/lock"
   }
 }
 
