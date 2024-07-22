@@ -14,7 +14,7 @@ deploy:
   before_script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | sh
   script:
-    - echo "$juankeys" > juankeys.pem
+    - echo "$JUANKEYS" > juankeys.pem
     - cat juankeys.pem
     - chmod 600 juankeys.pem
     - gitlab-terraform init
@@ -38,7 +38,7 @@ destroy:
   before_script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | sh
   script:
-    - echo "$juankeys" > juankeys.pem
+    - echo "$JUANKEYS" > juankeys.pem
     - chmod 600 juankeys.pem
     - gitlab-terraform destroy
     - rm juankeys.pem
